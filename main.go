@@ -17,7 +17,7 @@ func main() {
 	var exit = false
 
 	fmt.Println("Application started.")
-	for exit != false {
+	for exit != true {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("Enter mathematical operation in following format: 'a + b, a - b, a * b, a / b'\nOr type 'quit' to exit the application.")
 		text, _ := reader.ReadString('\n')
