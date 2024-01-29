@@ -7,19 +7,19 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
 	var num1, num2 float64
-	var unconverted1, unconverted2 string
-	var operator string
+	var unconverted1, unconverted2, operator string
 	var err error
 
 	fmt.Println("Application started.")
 	i := 0
 	for i < 1 {
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Println("Enter mathematical operation in following format: 'a + b, a - b, a * b, a / b', without spaces. \nOr type 'quit' to exit the application.")
+		fmt.Println("Enter mathematical operation in following format: 'a + b, a - b, a * b, a / b'\nOr type 'quit' to exit the application.")
 		text, _ := reader.ReadString('\n')
 		text = strings.TrimSpace(text)
 		if text != "quit" {
@@ -40,7 +40,8 @@ func main() {
 				}
 				calculator := calc.NewCalc()
 				result := calculator.Calculate(num1, num2, operator)
-				fmt.Println(result)
+				fmt.Println("Result:", result)
+				time.Sleep(time.Second)
 			}
 		} else {
 			fmt.Println("Quitting...")
