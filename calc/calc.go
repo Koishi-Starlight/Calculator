@@ -3,11 +3,10 @@ package calc
 import "log"
 
 const (
-	add         = "+"
-	subtract    = "-"
-	multiply    = "*"
-	divide      = "/"
-	divisionErr = "Zero division error"
+	add      = "+"
+	subtract = "-"
+	multiply = "*"
+	divide   = "/"
 )
 
 type calculator struct{}
