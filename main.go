@@ -1,0 +1,50 @@
+package main
+
+import (
+	"Calculator/calc"
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	var num1, num2 float64
+	var unconverted1, unconverted2 string
+	var operator string
+	var err error
+
+	fmt.Println("Application started.")
+	i := 0
+	for i < 1 {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Println("Enter mathematical operation in following format: 'a + b, a - b, a * b, a / b', without spaces. \nOr type 'quit' to exit the application.")
+		text, _ := reader.ReadString('\n')
+		text = strings.TrimSpace(text)
+		if text != "quit" {
+			operationSlice := strings.Split(text, " ")
+			if len(operationSlice) != 3 {
+				fmt.Println("Incorrect amount of arguments or too many spaces between numbers and operator.")
+			} else {
+				unconverted1 = operationSlice[0]
+				unconverted2 = operationSlice[2]
+				operator = operationSlice[1]
+				num1, err = strconv.ParseFloat(unconverted1, 64)
+				if err != nil {
+					fmt.Printf("Conversion error: #{err}")
+				}
+				num2, err = strconv.ParseFloat(unconverted2, 64)
+				if err != nil {
+					fmt.Printf("Conversion error: #{err}")
+				}
+				calculator := calc.NewCalc()
+				result := calculator.Calculate(num1, num2, operator)
+				fmt.Println(result)
+			}
+		} else {
+			fmt.Println("Quitting...")
+			i = 1
+		}
+	}
+}
